@@ -2,9 +2,9 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 
-  <a href="/">Home</a> |
-  <a href="/projects">Projects</a> |
-  <a href="/actions">Actions</a>
+  <a href="/#">Home</a> |
+  <a href="/#projects">Projects</a> |
+  <a href="/#actions">Actions</a>
   <component :is="currentView" />
 </template>
 
@@ -39,7 +39,9 @@ export default {
     window.addEventListener('click', (e) => {
       e.preventDefault();
       window.history.pushState("", "", e.target.href);
-      this.currentPath = e.target.href
+      const url = new URL(e.target.href);
+      this.currentPath = '#' + url.pathname.substring(1)
+      console.log(window.location.hash)
     })
   }
 }
